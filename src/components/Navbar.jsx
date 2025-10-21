@@ -1,21 +1,20 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import React from "react";
-import { navLinks } from "../../constants";
+
+import { navLinks } from "../../constants/index.js";
+
 const Navbar = () => {
   useGSAP(() => {
-    const navTweens = gsap.timeline({
+    const navTween = gsap.timeline({
       scrollTrigger: {
         trigger: "nav",
         start: "bottom top",
       },
     });
 
-    navTweens.fromTo(
+    navTween.fromTo(
       "nav",
-      {
-        backgroundColor: "transparent",
-      },
+      { backgroundColor: "transparent" },
       {
         backgroundColor: "#00000050",
         backgroundFilter: "blur(10px)",
@@ -34,9 +33,9 @@ const Navbar = () => {
         </a>
 
         <ul>
-          {navLinks.map((item, index) => (
-            <li key={index}>
-              <a href={`#${item.id}`}>{item.title}</a>
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <a href={`#${link.id}`}>{link.title}</a>
             </li>
           ))}
         </ul>
@@ -44,5 +43,4 @@ const Navbar = () => {
     </nav>
   );
 };
-
 export default Navbar;
